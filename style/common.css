@@ -1,0 +1,91 @@
+@charset "UTF-8";
+* { margin: 0; padding: 0; list-style: normal; }
+
+/* 属于css的注释 是会被编译出来的 */
+.box, .box2 { width: 100px; height: 200px; font-family: punctuation, PingFangSC-Regular, "Microsoft YaHei", "微软雅黑"; border: solid 20px red; background-color: pink; }
+
+.list li { height: 40px; line-height: 40px; }
+.list a { float: left; }
+.list span { float: right; width: 12px; height: 12px; background-color: yellow; margin-top: 14px; }
+
+.box, .box2 { font-style: normal; font-weight: bold; font-size: 14px; font-family: punctuation, PingFangSC-Regular, "Microsoft YaHei", "微软雅黑"; margin-top: 12px; margin-right: 12px; margin-bottom: 12px; margin-left: 12px; }
+
+.news2_title { width: 100px; }
+
+.new_title { width: 100px; }
+
+.abc { width: 10px; }
+
+.box, .box2 { width: 200px; }
+.box_content { width: 400px; }
+.box_content_abc { width: 200px; }
+
+/* @mixin opa() 不写参数 直接可以调用 @mixin opa($opa) 调用时候 必须传参 @mixin opa($opa:40) 调用的时候，如果传了就用传了的，没传就用默认的
+
+*/
+/*.demo{ @include opa(80); @include shadow(0 0 10px red,0 0 20px yellow);
+}*/
+/*
+.demo{ @include sj(bottom);
+}*/
+.demo { border-color: yellowgreen transparent transparent transparent; border-style: solid dashed  dashed; width: 0; height: 0; overflow: hidden; border-width: 10px; }
+
+.fl, .box, .box2 { float: left; }
+
+.box, .box2 { width: 300px; height: 300px; }
+
+/*.box2{ width:200px; height:200px; @extend .fl;
+}*/
+.box2, .abc { *zoom: 1; }
+.box2:after, .abc:after, .box2:before, .abc:before { content: ''; display: table; }
+.box2:after, .abc:after { clear: both; }
+
+.abc { width: 300px; }
+
+.content { background: url(../images/icon/a.jpg) left top no-repeat; }
+
+.ys { color: white; width: 150px; font: 12px/24px "Microsof YaHei", "微软雅黑"; }
+
+.item_10 { background-position: -180px 0; }
+
+.item_9 { background-position: -160px 0; }
+
+.item_8 { background-position: -140px 0; }
+
+.item_7 { background-position: -120px 0; }
+
+.item_6 { background-position: -100px 0; }
+
+.item_5 { background-position: -80px 0; }
+
+.demo_10 { background-position: -180px 0; }
+
+.demo_9 { background-position: -160px 0; }
+
+.demo_8 { background-position: -140px 0; }
+
+.demo_7 { background-position: -120px 0; }
+
+.demo_6 { background-position: -100px 0; }
+
+.aaa_5 { width: 100px; }
+
+.aaa_4 { width: 80px; }
+
+.aaa_3 { width: 60px; }
+
+.aaa_2 { width: 40px; }
+
+.aaa_1 { width: 20px; }
+
+.icon_user { width: 10px; }
+
+.icon_pass { width: 10px; }
+
+.icon_checked { width: 10px; }
+
+.icon_select { width: 10px; }
+
+.icon_aaa d { width: 10px; }
+
+/*# sourceMappingURL=common.css.map */

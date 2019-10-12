@@ -1,0 +1,182 @@
+﻿一、sass与less的比较
+less(偏前端的，现在用的不多)/sass（偏后端的）
+用这两个东西，可以换个方式写css
+
+less视频
+http://www.imooc.com/learn/102
+http://www.imooc.com/learn/61
+
+
+Ruby下载
+https://rubyinstaller.org/downloads/
+
+sass教程
+http://www.w3cplus.com/sassguide/
+
+sass安装参考
+http://www.w3cplus.com/sassguide/install.html
+
+----------------------------------------------------------------------------
+
+二、编译环境
+sass需要编译环境
+（1）koala（目前已经停止更新了）
+设置简体中文，关掉再开
+
+（2）ruby环境 命令的方式 永远不过时
+     依赖ruby 也是一门语言
+
+     官网：http://rubyinstaller.org/downloads（自备梯子）
+            - 安装路径中，不能有中文，不能有特殊符号，不能有空格。
+            - 编译sass的过程，路径中也不能有中文，不能有特殊符号，不能有空格。
+            (X64 - 64bit(位系统) 、X86 - 32bit（32位系统）)
+
+     step1: 这里下载Ruby 2.4.1-2 (x86)，安装
+            注意添加环境变量 Add Ruby executables to your PATH
+            -可以参考http://www.w3cplus.com/sassguide/
+
+     step2: Start Command Prompt with Ruby
+            gem install sass -win        $ gem install sass -mac
+
+            -如果安装不了，需要切换根，
+            http://www.w3cplus.com/sassguide/install.html
+            参考 淘宝RubyGems镜像安装 sass 下面黑框，注意现在淘宝已经用不了了
+
+            查看源网站的根：gem sources -l
+            https://rubygems.org/
+
+            1)  >gem sources --remove https://rubygems.org/
+            2)  >gem rources -a https://gems.ruby-china.org/
+            3)  >gem sources -l
+            4)  >gem install sass
+
+
+     step3: sass -v
+
+
+     也可以点击这里下载Sass安装文件进行安装
+
+-----------------------------------------------------------------------------------
+
+三、sass教程
+sass 教程
+http://www.w3cplus.com/sassguide/
+
+-----------------------------------------------------------------------------------
+
+
+四、.scss与.sass的区别
+(1)两种注释
+// 不会被编译的sass的注释
+/*
+  会被编译
+  scss
+  sass
+*/
+
+
+$box:asdf;
+scss语法
+.box{
+  width:$box;
+}
+也可以横着写 .box { width:$box; }
+
+
+sass语法
+.box
+  width:$box;
+
+
+-----------------------------------------------------------------------------------
+
+五、koala编译
+（1）将样式文件夹拖入koala
+（2）去对勾 Source Map
+（3）执行编译
+（4）看到绿色的success图标就代表编译成功了
+
+官网：koala-app.com
+
+-----------------------------------------------------------------------------------
+
+六、命令的方式进行编译
+
+编译sass的过程，路径中也不能有中文，不能有特殊符号，不能有空格。
+busy就将文件拷贝到www目录下
+
+可参考：http://www.w3cplus.com/sassguide/compile.html
+
+（1）在style文件夹中，按住shift键，右键在此次打开命令窗口
+（2）输入>sass common.scss a.css
+
+sass 要编译的文件 编译后的文件
+
+（3）实现实时监听
+1）单文件监听命令
+sass --watch common.scss:a.css
+
+2）多文件监听
+sass --watch 文件夹名称（要监听的文件夹）：编译到哪儿（编译后的位置）
+有可能要>cd ..
+停止是CTRL + C（所有的cmd文件都是这个命令）
+sass --watch style:abc
+
+可以看到 write ...
+write是输出的意思
+
+有公司会选择sass是一个目录，css是一个目录，二者分开。
+
+-----------------------------------------------------------------------------------
+
+七、cmd命令
+自行搜索 （windows cmd命令大全）
+
+dir 查看当前目录文件
+cd 打开文件 cd a    cd a.txt    cd ..
+cls 清除当前屏幕
+ctrl + c 是否终止操作 y是
+
+
+按上下箭头   使用你最近使用的几个命令
+
+-----------------------------------------------------------------------------------
+
+八、--style表示解析后的css是什么格式
+
+>sass --watch style:style --style compact
+--style表示解析后的css是什么格式，有四种取值分别为：nested，expanded，compact，compressed
+koala编译的输出方式也是这四种（可以在koala中修改）
+
+nested:默认
+expanded:css纵向写法
+compact:横向
+compressed:压缩（所有都压缩成一行代码）
+
+一般用第三个或者第二个
+
+-----------------------------------------------------------------------------------
+
+九、变量
+
+var aaa = 12;
+变量 可以存css单位、颜色、文字
+
+$width:300px;
+$w:300px 100px 200px //一个变量三个值
+
+background-color:nth(哪个变量，第几个)
+background-color:nth($bgc,2);
+
+sass中的变量作用域 和js中的作用域是一样的
+
+
+-----------------------------------------------------------------------------------
+
+十、嵌套
+
+是最好用的东西
+
+继承
+
+混合

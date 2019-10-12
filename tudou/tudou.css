@@ -1,0 +1,107 @@
+@charset "UTF-8";
+/* 清除默认样式 */
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.original_title, .original_con {
+  *zoom: 1;
+}
+.original_title:after, .original_con:after, .original_title:before, .original_con:before {
+  content: '';
+  display: table;
+}
+.original_title:after, .original_con:after {
+  clear: both;
+}
+
+.original {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.original {
+  width: 616px;
+  margin-top: 30px;
+}
+.original_title {
+  border-top: solid 1px #ccc;
+}
+.original_title h3 {
+  font-size: 22px;
+  color: #575757;
+  font-famiy: "Microsoft YaHei","微软雅黑";
+  font-weight: normal;
+  float: left;
+  width: 106px;
+  border-top: solid 2px pink;
+  line-height: 61px;
+  margin-top: -1px;
+  position: relative;
+}
+.nav {
+  float: right;
+  height: 62px;
+  line-height: 62px;
+  font-size: 14px;
+}
+.nav li {
+  float: left;
+}
+.nav a {
+  color: #000;
+}
+.nav span {
+  padding: 0 8px;
+}
+
+.original_con {
+  margin-right: -32px;
+}
+.u_item {
+  width: 130px;
+  height: 164px;
+  float: left;
+  margin-right: 32px;
+}
+.u_item p {
+  line-height: 22px;
+  font-size: 12px;
+}
+
+.u_img {
+  width: 130px;
+  height: 78px;
+  margin-bottom: 5px;
+}
+.u_img img {
+  vert-align: top;
+  width: 100%;
+  height: 100%;
+}
+
+.username, .message, .play {
+  background-position: left center;
+  background-repeat: no-repeat;
+  padding-left: 17px;
+}
+
+.username {
+  background-image: url(img/icon1.png);
+}
+
+.message {
+  background-image: url(img/icon2.png);
+}
+
+.play {
+  background-image: url(img/icon3.png);
+}
+
+/*# sourceMappingURL=tudou.css.map */

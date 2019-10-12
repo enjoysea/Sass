@@ -1,0 +1,291 @@
+@charset "UTF-8";
+
+*{
+  margin:0;
+  padding:0;
+  list-style:normal;
+}
+
+// 不会被编译的 sass的注释
+/* 属于css的注释 是会被编译出来的 */
+
+//变量 可以存css单位、颜色、文字
+$width:300px;
+$height:200px;
+$bgc:yellowgreen pink;
+$color:#FF0;
+//$ms:'punctuation,PingFangSC-Regular,"Microsoft YaHei","微软雅黑"；';
+$ms:punctuation,PingFangSC-Regular,"Microsoft YaHei","微软雅黑";
+$bor:solid 20px red; //多值变量
+
+.box {
+  $width:100px;
+  width: $width;
+  height:$height;
+  font-family:$ms;
+  border:$bor;
+  //background-color:$bgc;
+  //background-color:$color;
+  //background-color:nth(哪个变量，第几个);
+  background-color:nth($bgc,2);
+}
+
+//sass中的变量作用域 和js中的作用域是一样的
+
+//嵌套 标签怎么嵌套，他就可以怎么嵌套
+
+.list{
+  $lh:40px;
+  li{
+    height:$lh;
+    line-height:$lh;
+  }
+
+  a{
+    float:left;
+  }
+
+  span{
+    float:right;
+    width:12px;
+    height:12px;
+    background-color:yellow;
+    margin-top:($lh - 12px) / 2; //注意($lh - 12px)一定要有空格，这样就不用自己去计算了
+  }
+}
+
+//属性嵌套
+.box{
+  //复合样式，注意加：
+  //就是一个json的格式，只不过是,修改成;
+  font:{
+    style:normal;
+    weight:bold;
+    size:14px;
+    family: $ms;
+  }
+  margin:{
+    top:12px;
+    right:12px;
+    bottom:12px;
+    left:12px;
+  }
+}
+
+.news2{
+  //&编译时是不会带着父级的，但本身没有跳出的意思
+  &_title{
+    width:100px;
+  }
+}
+
+.news{
+  //单个跳到根了
+  //@at-root .news_title{
+  //  width:10px;
+  //}
+  //@at-root .news_content{
+  //  width:20px;
+  //}
+
+  //多个跳到根，例如多个小图标
+  @at-root{
+    .new_title{
+      width:100px;
+    }
+    .abc{
+      width:10px;
+    }
+  }
+}
+
+.box {
+  width:200px;
+
+  //&表示上一层选择器
+  &_content{
+    width:400px;
+    &_abc{
+      width:200px;
+    }
+  }
+}
+
+//混合 @mixin 声明
+/*
+  @mixin opa() 不写参数 直接可以调用
+  @mixin opa($opa) 调用时候 必须传参
+  @mixin opa($opa:40) 调用的时候，如果传了就用传了的，没传就用默认的
+*/
+
+//混合 @mixin 声明
+@mixin opa($opa:50){
+  opacity:$opa/100;
+  filter:alpha(opacity=$opa);
+}
+
+//...表示“不确定”
+@mixin shadow($shadow...){
+  box-shadow: $shadow ;
+}
+
+//@include 是调用@minxin所声明的东西
+/*.demo{
+  @include opa(80);
+  @include shadow(0 0 10px red,0 0 20px yellow);
+}*/
+
+@mixin sj($fx:top,$size:10px,$color:red){
+  @if ($fx == top){
+    border-color:transparent transparent  $color transparent;
+    border-style:dashed dashed solid dashed;
+  }
+  @else if($fx == right){
+    border-color:transparent transparent transparent $color;
+    border-style:dashed dashed  dashed solid;
+  }
+  @else if($fx == bottom){
+    border-color:$color transparent transparent transparent;
+    border-style:solid dashed  dashed;
+  }
+  @else if($fx == left){
+    border-color:transparent $color transparent   transparent;
+    border-style:dashed solid dashed dashed;
+  }
+  width:0;
+  height:0;
+  overflow:hidden;
+  border-width:$size;
+}
+
+/*
+.demo{
+  @include sj(bottom);
+}*/
+
+.demo{
+  //参数不存在顺序了
+  @include sj($fx:bottom,$color:yellowgreen);
+}
+
+//继承
+
+/*
+  会自动提取公用样式
+  .fl, .box, .box2 { float: left; }
+  .box, .box2 { width: 300px; height: 300px; }
+*/
+.fl {
+  float:left;
+}
+.box {
+  width:300px;
+  height:300px;
+  @extend .fl;
+}
+
+
+/*.box2{
+  width:200px;
+  height:200px;
+  @extend .fl;
+}*/
+
+.box2{
+  @extend .box;
+  @extend %clearfix;
+}
+
+//占位选择器（只有在用到的时候，才会被编译出来）
+%clearfix{
+  *zoom:1;
+  &:after,
+  &:before{
+    content:'';
+    display: table;
+  }
+  &:after{
+    clear:both;
+  }
+}
+
+.abc{
+  width:300px;
+  @extend %clearfix;
+}
+
+
+//字符串差值
+$icon:'../images/icon/';
+$img:'../images/';
+$sina:'http://img2.sina.com.cn/2016-11-21/qiaobushi/images/icon/';
+
+//#{变量名}
+.content{
+  background:url(#{$icon}a.jpg) left top no-repeat;
+}
+
+//sass中的运算 运算符的前后 必须要有空格
+.ys {
+
+  // 255 0 0 → 155 0 0
+  // color:#F00 - 100;
+
+  //255 0 0 → 255 100 100
+  //color:#F00 + 100;
+
+  //255 0 0 → 255 255 255
+  color:#F00 + 255;
+  width:$width / 2;
+  $fs:12px;
+  $lh:24px;
+
+  //#{$fs}是转成字符
+  font:#{$fs}/#{$lh} "Microsof YaHei","微软雅黑";
+}
+
+
+//js中的for(var i=0;i<aaa.length;i++){}
+$max:10;
+$min:5;
+// for 循环
+//1-10 是<=
+@for $i from $max through $min{
+  //#{$i} 阻止$i去编译，让其变成字符串
+  .item_#{$i}{
+     //width:10px * $i;
+    background-position:-($i - 1) * 20px 0;
+   }
+}
+
+
+//1-9 是<
+@for $i from $max to $min{
+  //#{$i} 阻止$i去编译，让其变成字符串
+  .demo_#{$i}{
+    //width:10px * $i;
+    background-position:-($i - 1) * 20px 0;
+  }
+}
+
+
+$a:5;
+@while($a >= 1){
+  .aaa_#{$a}{
+    width:20px * $a;
+  }
+  $a:$a - 1;
+}
+
+
+//each
+//做图标，就是向上堆class名
+$icon_name:user,pass,checked,select,aaa d;
+@each $i in $icon_name{
+  .icon_#{$i}{
+    width:10px;
+  }
+}
+
+
+//三元

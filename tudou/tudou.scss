@@ -1,0 +1,119 @@
+@charset "utf-8";
+/* 清除默认样式 */
+* {
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+a{
+  text-decoration: none;
+}
+%clearfix{
+  *zoom:1;
+  &:after,
+  &:before{
+    content:'';
+    display: table;
+  }
+  &:after{
+    clear:both;
+  }
+}
+
+%block-center{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+//声明一些常用的变量（也可以声明为局部变量，这样不会影响到外面的东西）
+$gwidth:616px;
+$hd_height:62px;
+$item_w:130px;
+$item_h:164px;
+$item_img:78px;
+$mr:32px;
+
+.original{
+  width:$gwidth;
+  margin-top:30px;
+  @extend %block-center;
+
+
+  &_title{
+    border-top:solid 1px #ccc;
+    @extend %clearfix;
+    $c:#575757;
+    h3{
+      font-size:22px;
+      color:$c;
+      font-famiy:"Microsoft YaHei","微软雅黑";
+      font-weight:normal;
+      float:left;
+      width:106px;
+      border-top:solid 2px pink;
+
+      line-height:$hd_height - 1;
+      margin-top:-1px;
+      position:relative;
+    }
+    @at-root .nav{
+      float:right;
+      height:$hd_height;
+      line-height:$hd_height;
+      font-size:14px;
+      li{
+        float:left;
+      }
+      a{
+        color:#000;
+      }
+      span{
+        padding:0 8px;
+      }
+    }
+  }
+ }
+.original_con{
+  margin-right:-$mr;
+  @extend %clearfix;
+  @at-root{
+    .u_item{
+      width:$item_w;
+      height:$item_h;
+      float:left;
+      margin-right:$mr;
+      p{
+        line-height:22px;
+        font-size:12px;
+      }
+    }
+    .u_img{
+      width:$item_w;
+      height:$item_img;
+      margin-bottom:5px;
+      img{
+        vert-align: top;
+        width:100%;
+        height:100%;
+      }
+    }
+  }
+}
+
+.username,.message,.play{
+  background-position:left center;
+  background-repeat: no-repeat;
+  padding-left:17px;
+}
+
+.username{
+  background-image:url(img/icon1.png)
+}
+
+.message{
+  background-image:url(img/icon2.png)
+}
+
+.play{
+  background-image:url(img/icon3.png)
+}

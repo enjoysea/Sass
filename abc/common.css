@@ -1,0 +1,13 @@
+@charset "UTF-8";
+/*
+  会被编译
+  scss
+  sass
+*/
+body {
+  background-color: yellow;
+  border: solid 30px green;
+  width: 400px;
+  padding: 4000px; }
+
+/*# sourceMappingURL=common.css.map */
